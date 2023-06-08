@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "shopinfo";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<script type="text/javascript">
+
+    function deleshop(id) {
+
+        if (confirm("您确定要删除吗？")) {
+
+            $.ajax({
+                url: '/Menu/deleshop',
+                type: 'post',
+                data: { "id": id },
+                dataType: 'json',
+                success: function (msg) {
+                    if (msg > 0) {
+                        location.href = '/Menu/shopinfo';
+
+                        alert("删除成功！");
+                    } else { alert("删除失败"); }
+                }
+
+
+            });
+
+        }
+
+
+    }
+
+
+    function editshop(id) {
+
+
+        location.href = "/Menu/editshop/" + id + "";
+
+    }
+
+</script>
+
+
+@section di{
+    <form method="post" action="/Menu/Index">
+        <table class="table table-striped">
+            <tr>
+                <td>
+                    <select id="Select1" name="ddlvalue" class="form-control">
+                        <option value="0">全部</option>
+                        @{
+
+                            @*foreach (var item in (SelectList)ViewData["ddl"])
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }*@
+
+
+                        }
+                    </select>
+                </td>
+                <td>
+
+                    商品名称：  <input id="Text1" type="text" name="name1" />
+                </td>
+                <td>
+                    <input id="Button1" type="submit" value="查询" class="btn btn-primary" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    产品编号
+                </th>
+                <th>
+                    产品名称
+                </th>
+                <th>
+                    产品图片
+                </th>
+                <th>
+                    产品价格
+                </th>
+                <th>
+                    产品标签
+                </th>
+                <th>
+                    产品类型
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+                @*if (Model.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="5">
+                                不好意思没查到相关信息！
+                            </td>
+                        </tr>
+                    }*@
+
+                //else
+                //{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Cid</td>
+                        <td>@item.Cname</td>
+                        <td>
+                            <img src="@item.Cphoto" style="height:50px;width:50px" />
+
+                        </td>
+                        <td>$@item.Cprice</td>
+                        <td>@item.CTags</td>
+                        <td>@item.PetID</td>
+                        <td>
+                            <input id="Button1" type="button" value="修改" class="btn btn-warning" onclick="editshop(@item.Cid)" />
+                            <input id="Button1" type="button" value="删除" class="btn btn-danger" onclick="deleshop(@item.Cid)" />
+                        </td>
+                    </tr>
+                }
+                @*}*@
+
+
+            }
+
+        </tbody>
+    </table>
+
+
+
+
+}

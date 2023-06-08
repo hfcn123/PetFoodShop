@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewBag.Title = "register";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<script src="~/js/bootstrap.min.js"></script>
+<link href="~/static/css/index.css" rel="stylesheet" />
+<link href="~/static/css/bootstrap.css" rel="stylesheet" />
+<script src="~/js/jquery.min.js"></script>
+<script>
+    $(function () {
+        var img2 = new ImgUpload('.imgLog2', 100, 100, 100);
+        $(document).on('change', ".imgLog2 input", function (e) {
+            //模拟后台返回url
+            var url = window.URL.createObjectURL(e.target.files[0]);
+            $(this).parent().css('background', 'url(' + url + ')0% 0% / cover')
+            img2.setSpan(this)
+        })
+    })
+</script>
+<h2>register</h2>
+@section di{
+    <main class="main-content">
+        <!--== Start Page Header Area Wrapper ==-->
+        <div class="page-header-area" data-bg-img="/assets/img/photos/bg1.png">
+            <div class="container pt--0 pb--0">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-header-content">
+                            <h2 class="title"><a href="register">注册</a></h2>
+                            <nav class="breadcrumb-area">
+                                <ul class="breadcrumb">
+                                    <li><a href="index">首页</a></li>
+                                    <li class="breadcrumb-sep">//</li>
+                                    <li><a href="register">注册</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--== End Page Header Area Wrapper ==-->
+        <!--== Start My Account Area Wrapper ==-->
+        <section class="account-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="register-form-content">
+                            <form action="/Menu/register" method="post" enctype="multipart/form-data">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="email">头像 <span class="required">*</span></label>
+
+                                            @*<input id="tx" class="form-control" type="file" name="tx">
+                                                <div style="width:100px;height:100px">
+                                                    <img src="" alt="这里显示用户头像"  />
+                                                </div>*@
+
+                                        <div class="box">
+                                            <input id="tx" class="form-control" type="file" name="files">
+                                            <p>
+                                                <div class="upload imgLog2">
+                                                    <span>上传头像</span>
+                                                </div>
+                                            </p>
+                                        </div>
+                                            <script src="~/js/index.js"></script>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="username">用户名 <span class="required">*</span></label>
+
+                                            <input id="username" class="form-control" type="text" name="UName">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="email">电子邮箱 <span class="required">*</span></label>
+                                            <input id="email" class="form-control" type="email" name="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="password">性别 <span class="required">*</span></label>
+                                            <input id="Radio1" type="radio" name="sex" checked="checked" />男
+                                            <input id="Radio1" type="radio" name="sex" />女
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="password">手机号 <span class="required">*</span></label>
+                                            <input id="password" class="form-control" type="text" name="Tel">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="password">密码 <span class="required">*</span></label>
+                                            <input id="password" class="form-control" type="text" name="Pwd">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="password">地址 <span class="required">*</span></label>
+                                            <input id="password" class="form-control" type="text" name="adress">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group mb--0">
+                                            <input id="Button1" type="submit" value="注册" href="#" class="btn-register" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End My Account Area Wrapper ==-->
+        <!--== Start Feature Area Wrapper ==-->
+        <div class="feature-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="feature-icon-box">
+                            <div class="icon-box">
+                                <img class="icon-img" src="~/static/picture/f1.png" width="46" height="34" alt="Icon-HasTech">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">Free Shipping</h5>
+                                <p>Capped at $39 per order</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="feature-icon-box">
+                            <div class="icon-box">
+                                <img class="icon-img" src="~/static/picture/f2.png" width="43" height="34" alt="Icon-HasTech">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">Card Payments</h5>
+                                <p>12 Months Installments</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="feature-icon-box">
+                            <div class="icon-box">
+                                <img class="icon-img" src="~/static/picture/f3.png" width="39" height="39" alt="Icon-HasTech">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">Easy Returns</h5>
+                                <p>Shop With Confidence</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="feature-icon-box">
+                            <div class="icon-box">
+                                <img class="icon-img" src="~/static/picture/f4.png" width="36" height="39" alt="Icon-HasTech">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">24/7 Support</h5>
+                                <p>Contact 24 hours everyday</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="~/images/bootstrap-fileinput.js"></script>
+        <script src="~/images/jquery.min.js"></script>
+        <!--== End Feature Area Wrapper ==-->
+    </main>
+
+}

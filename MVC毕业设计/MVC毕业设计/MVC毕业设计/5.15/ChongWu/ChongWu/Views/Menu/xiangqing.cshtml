@@ -1,0 +1,425 @@
+﻿@model List<ChongWu.Models.petInfo>
+@{
+    ViewBag.Title = "xiangqing";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<script type="text/javascript">
+
+
+    function addcart(id) {
+
+
+            if (@ViewData["userid"]!=9999) {
+
+                $.ajax({
+                    url: '/Menu/addcart',
+                    type: 'post',
+                    data: { "id": id },
+                    dataType: 'json',
+                    success: function (msg) {
+                        if (msg > 0) {
+                            location.href = "/Menu/xiangqing/" + id + ""
+
+                            alert("加入成功！");
+                        } else { alert("添加失败"); }
+                    }
+
+
+                });
+
+            }
+            else { alert("您还未登录！") }
+
+
+
+    }
+
+    function movecart(id) {
+        if (confirm("您确定要移除购物车吗？")) {
+
+            $.ajax({
+                url: '/Menu/movecart',
+                type: 'post',
+                data: { "id": id },
+                dataType: 'json',
+                success: function (msg) {
+                    if (msg > 0) {
+                        location.href = '/Menu/Index';
+
+                        alert("移除成功！");
+                    } else { alert("移除失败"); }
+                }
+
+
+            });
+
+        }
+    }
+     
+</script>
+@section di{
+    <main class="main-content">
+
+        <!--== Start Page Header Area Wrapper ==-->
+        <div class="page-header-area" style="background-image: url(/assets/img/photos/bg1.png)">
+            <div class="container pt--0 pb--0">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-header-content">
+                            <h2 class="title">Products</h2>
+                            <nav class="breadcrumb-area">
+                                <ul class="breadcrumb">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-sep">//</li>
+                                    <li>Products</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--== End Page Header Area Wrapper ==-->
+        <!--== Start Product Single Area Wrapper ==-->
+        <section class="product-area product-single-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product-single-item">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <!--== Start Product Thumbnail Area ==-->
+                                    <div class="product-single-thumb">
+                                        <div class="swiper single-product-thumb single-product-thumb-slider">
+                                            <div class="swiper-wrapper">
+
+                                                <div class="swiper-slide">
+                                                    <a class="lightbox-image" data-fancybox="gallery" href="@ViewData["pic"]">
+                                                        <img src="@ViewData["pic"]" width="570" height="675" alt="Image-HasTech">
+                                                    </a>
+
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a class="lightbox-image" data-fancybox="gallery" href="@ViewData["pic1"]">
+                                                        <img src="@ViewData["pic1"]" width="570" height="675" alt="Image-HasTech">
+                                                    </a>
+
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a class="lightbox-image" data-fancybox="gallery" href="@ViewData["pic2"]">
+                                                        <img src="@ViewData["pic2"]" width="570" height="675" alt="Image-HasTech">
+                                                    </a>
+
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a class="lightbox-image" data-fancybox="gallery" href="@ViewData["pic3"]">
+                                                        <img src="@ViewData["pic3"]" width="570" height="675" alt="Image-HasTech">
+                                                    </a>
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                        <div class="product-single-swiper-wrap position-relative">
+                                            <div class="swiper single-product-nav single-product-nav-slider">
+                                                <div class="swiper-wrapper">
+
+
+                                                    <div class="swiper-slide">
+                                                        <img src="@ViewData["pic"]" width="127" height="127" alt="Image-HasTech">
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <img src="@ViewData["pic1"]" width="127" height="127" alt="Image-HasTech">
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <img src="@ViewData["pic2"]" width="127" height="127" alt="Image-HasTech">
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <img src="@ViewData["pic3"]" width="127" height="127" alt="Image-HasTech">
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <!--== Add Swiper Arrows ==-->
+                                            <div class="single-swiper-btn-wrap">
+                                                <div class="swiper-btn-prev">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </div>
+                                                <div class="swiper-btn-next">
+                                                    <i class="fa fa-angle-right"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--== End Product Thumbnail Area ==-->
+                                </div>
+                          
+
+
+                                    <div class="col-lg-6">
+                                        <!--== Start Product Info Area ==-->
+
+
+                                        <div class="product-single-info">
+
+                                            <h3 class="main-title"></h3>
+                                            <div class="prices">
+                                                <span class="price">$@ViewData["price"]</span>
+                                            </div>
+                                            <div class="rating-box-wrap">
+                                                <div class="rating-box">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="review-status">
+                                                    <a href="javascript:void(0)">(5 星 好 评)</a>
+                                                </div>
+                                            </div>
+                                            <p>@ViewData["dec"]</p>
+
+                                            <div class="product-single-meta">
+                                                <ul>
+
+
+                                                    <li><span>价格:</span>$@ViewData["price"]</li>
+                                                    <li><span>商品名:</span>@ViewData["name"]</li>
+                                                    <li><span>标签:</span>@ViewData["tags"]</li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="product-quick-action">
+                                                <div class="qty-wrap">
+                                                    <div class="pro-qty">
+                                                        <input type="text" title="Quantity" value="01">
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn-product-cart">
+                                                    立即购买
+                                                </button>
+
+                                                <button type="button" class="btn-product-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal" onclick="addcart(@ViewData["id"])">
+                                                    加入购物车
+                                                </button>
+
+                                                <button type="button" class="btn-product-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal@(ViewData["id"])">
+                                                    <i class="pe-7s-look"></i>
+                                                </button>
+                                                @*//小眼睛详情*@
+
+                                                <!--== Start Product Quick View Modal ==-->
+                                                <aside class="product-cart-view-modal modal fade" id="action-QuickViewModal@(ViewData["id"])" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="product-quick-view-content">
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                                        <span class="pe-7s-close"></span>
+                                                                    </button>
+                                                                    <div class="container pt--0 pb--0">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6">
+                                                                                <!--== Start Product Thumbnail Area ==-->
+                                                                                <div class="product-single-thumb">
+                                                                                    <img src="@ViewData["pic"]" width="544" height="560" alt="Image-HasTech">
+                                                                                </div>
+                                                                                <!--== End Product Thumbnail Area ==-->
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <!--== Start Product Info Area ==-->
+                                                                                <div class="product-single-info">
+                                                                                    <h3 class="main-title">@ViewData["name"]</h3>
+                                                                                    <div class="prices">
+                                                                                        <span class="price">$ @ViewData["price"]</span>
+                                                                                    </div>
+                                                                                    <div class="rating-box-wrap">
+                                                                                        <div class="rating-box">
+                                                                                            <i class="fa fa-star"></i>
+                                                                                            <i class="fa fa-star"></i>
+                                                                                            <i class="fa fa-star"></i>
+                                                                                            <i class="fa fa-star"></i>
+                                                                                            <i class="fa fa-star"></i>
+                                                                                        </div>
+                                                                                        <div class="review-status">
+                                                                                            <a href="javascript:void(0)">(5 Customer Review)</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <p>描述</p>
+                                                                                    <div class="product-single-meta">
+                                                                                        <ul>
+                                                                                            <li><span>产品名:</span> @ViewData["name"]</li>
+                                                                                            <li>
+                                                                                                <span>标签:</span>
+                                                                                                <a href="shop.html" >@ViewData["tags"]</a>
+                                                                                            </li>
+
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                    <div class="product-quick-action">
+                                                                                        <div class="qty-wrap">
+
+                                                                                        </div>
+                                                                                      
+                                                                                        <button type="button" class="btn-product-cart" onclick="addcart(@ViewData["id"])">
+                                                                                            加入购物车
+                                                                                        </button>
+                                                                                        @*<button type="button" class="btn-product-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                                                    <i class="pe-7s-like"></i>
+                                                                </button>*@
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--== End Product Info Area ==-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </aside>
+                                                <!--== End Product Quick View Modal ==-->
+
+                                            </div>
+
+                                            <div class="product-review-tabs-content">
+                                                <ul class="nav product-tab-nav" id="ReviewTab" role="tablist">
+                                                    <li role="presentation">
+                                                        <a class="active" id="information-tab" data-bs-toggle="pill" href="#information" role="tab" aria-controls="information" aria-selected="true">简介</a>
+                                                    </li>
+                                                    <li role="presentation">
+                                                        <a id="description-tab" data-bs-toggle="pill" href="#description" role="tab" aria-controls="description" aria-selected="false">描述</a>
+                                                    </li>
+
+                                                </ul>
+                                                <div class="tab-content product-tab-content" id="ReviewTabContent">
+                                                    <div class="tab-pane fade show active" id="information" role="tabpanel" aria-labelledby="information-tab">
+                                                        <div class="product-information">
+                                                            <p>@ViewData["tags"]</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                                        <div class="product-description">
+                                                            <p>@ViewData["dec"]</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--== End Product Info Area ==-->
+                                    </div>
+                                  
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Product Single Area Wrapper ==-->
+        <!--== Start Product Area Wrapper ==-->
+        <section class="product-area product-default-area">
+            <div class="container pt--0">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title shape-center text-center">
+                            <h5 class="sub-title">相关产品</h5>
+                            <h2 class="title">明星产品</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @{
+                        foreach (var item in (List<ChongWu.Models.petInfo>)ViewData["shop"])
+                        {
+                            <div class="col-sm-6 col-lg-3">
+                                <!--== Start Product Item ==-->
+                                <div class="product-item">
+                                    <div class="product-thumb">
+                                        <a href="">
+                                            <img src="@item.Cphoto" width="270" height="320" alt="Image-HasTech">
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h4 class="title"><a href="">@item.Cname</a></h4>
+                                        <div class="prices">
+                                            <span class="price">$@item.Cprice</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-action">
+                                        <button type="button" class="btn-product-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                            <i class="pe-7s-like"></i>
+                                        </button>
+                                        <div class="product-action-links">
+                                            <button type="button" class="btn-product-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                                <i class="pe-7s-shopbag"></i>
+                                            </button>
+                                            <button type="button" class="btn-product-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                                <i class="pe-7s-look"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--== End prPduct Item ==-->
+                            </div>
+                        }
+
+                    }
+
+
+
+
+
+                </div>
+            </div>
+        </section>
+        <!--== End Product Area Wrapper ==-->
+    </main>
+    <!--== Start Aside Cart ==-->
+    <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h1 class="d-none" id="offcanvasRightLabel">Shopping Cart</h1>
+            <button class="btn-aside-cart-close" data-bs-dismiss="offcanvas" aria-label="Close">Shopping Cart <i class="fa fa-chevron-right"></i></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="aside-cart-product-list">
+
+                @{
+                    foreach (var item in (List<ChongWu.Models.cartinfo>)ViewData["cart"])
+                    {
+                        <li class="aside-product-list-item">
+                            <a href="#/" class="remove" onclick="movecart(@item.cartid)">×</a>
+
+                            <a href="single-product.html">
+                                <img src="@item.cartphoto" width="90" height="110" alt="购物车" onclick="">
+                                <span class="product-title">@item.cartname</span>
+                            </a>
+                            <span class="product-price">@item.cartcount × £@item.cartprice</span>
+                        </li>
+                    }
+                }
+
+
+
+
+
+            </ul>
+            <p class="cart-total"><span>Subtotal:</span><span class="amount">£ @ViewData["zj"]</span></p>
+            <a class="btn-total" href="#" onclick="location.href='/Menu2/Index'">查看购物车</a>
+            <a class="btn-total" href="#" onclick="location.href='/Menu2/checkout'">结算</a>
+            <!-- 支付方式 -->
+            <a class="d-block text-end lh-1" href="shop-checkout.html"><img src="~/static/picture/paypal.png" width="133" height="26" alt="Has-image"></a>
+        </div>
+    </aside>
+    <!--== End Aside Cart ==-->
+}
+
+
+

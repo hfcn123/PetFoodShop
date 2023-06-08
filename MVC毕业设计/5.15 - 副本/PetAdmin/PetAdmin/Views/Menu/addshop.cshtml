@@ -1,0 +1,94 @@
+﻿@model PetAdmin.Models.petInfo
+
+@{
+    ViewBag.Title = "addshop";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+@section di{@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="card-header">
+                <h6 class="text-uppercase mb-0">添加商品</h6>
+            </div>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cphoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Cphoto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cphoto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Cname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Cname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cprice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Cprice, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Cprice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.CDescription, 5, 16, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CTags, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CTags, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CTags, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ctype, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.RadioButtonFor(model => model.Ctype, "0", new { @checked = true }) 默认
+                    @Html.RadioButtonFor(model => model.Ctype, "1") 新品
+                    @Html.RadioButtonFor(model => model.Ctype, "2") 畅销款
+                    @Html.RadioButtonFor(model => model.Ctype, "3") 特别款
+                    @Html.RadioButtonFor(model => model.Ctype, "4") 明星款
+                    @Html.ValidationMessageFor(model => model.Ctype, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PetID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("PetID", (SelectList)ViewData["ddl"])
+                    @Html.ValidationMessageFor(model => model.PetID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="添加" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+
+<div>
+    @Html.ActionLink("返回商品详情页", "shopinfo")
+</div>
+    }
+
